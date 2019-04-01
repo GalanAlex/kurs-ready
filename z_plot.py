@@ -30,17 +30,16 @@ class CustomWidget2(pg.GraphicsWindow):
         for i in range(ing + 1):
             self.data[i] = slv.main_sum(6*self.y/ self.J, 4*i/ self.K)
 
-        v = abs(cgs.mainsolve(self.J, self.K))
+        v = (cgs.mainsolve(self.J, self.K))
         #print(v.shape)
         #print("fqwefweqf")
-        self.data1 = v[0,:]
-        self.data1 = v[10,:]
+        self.data1 = abs(v[0,:])
 
         #print(self.data1)
         #print(x2)
 
         self.curve = self.p.plot(x1, self.data, pen=(16, 41, 89), symbolBrush=(16, 41, 89))#аналитическоя
-        self.curve1 = self.p.plot(x2, abs(self.data1), pen=(242, 219, 8), symbolBrush=(242, 219, 8))#cage
+        self.curve1 = self.p.plot(x2, (self.data1), pen=(242, 219, 8), symbolBrush=(242, 219, 8))#cage
 
         self.p.setYRange(0.0,10)
         #self.p.setXRange(0,0.2)
@@ -75,7 +74,7 @@ class CustomWidget2(pg.GraphicsWindow):
         x2 = np.linspace(0, cgs.L, self.K +1)
         self.data = np.zeros(ing + 1)
         v = cgs.mainsolve(self.J, self.K)
-        self.data1 = v[self.y, :]
+        self.data1 = abs(v[self.y, :])
 
         for i in range(ing + 1):
             self.data[i] = slv.main_sum( self.y*6 / self.J, i *4/ ing)
